@@ -31,11 +31,13 @@ public class MainActivity extends Activity {
 	private int fourWin;
 	private int fiveWin;
 	private int sixWin;	
+	private int level;
 	private String choosedWord;
 	private SharedPreferences savedScore;
 	private TextView counterTextView;
 	private EditText wordEditText;
 	private EditText guessEditText;
+	private Button clearButton;
 	private Button goButton;
 	private Button validateButton;
 	private TextView fourScoreTextView;
@@ -48,12 +50,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         savedScore = getSharedPreferences("scores",MODE_PRIVATE);
-       /* fourTotal = savedScore.getInt("fourTotal", (Integer) null);
-        fiveTotal = savedScore.getInt("fiveTotal", (Integer) null);
-        sixTotal = savedScore.getInt("sixTotal", (Integer) null);
-        fourWin = savedScore.getInt("fourWin", (Integer) null);
-        fiveWin = savedScore.getInt("fiveWin", (Integer) null);
-        sixWin = savedScore.getInt("sixWin", (Integer) null);*/
+        fourTotal = savedScore.getInt("fourTotal",0);
+        fiveTotal = savedScore.getInt("fiveTotal",0);
+        sixTotal = savedScore.getInt("sixTotal", 0);
+        fourWin = savedScore.getInt("fourWin", 0);
+        fiveWin = savedScore.getInt("fiveWin",0);
+        sixWin = savedScore.getInt("sixWin", 0);
         counterTextView =(TextView) findViewById(R.id.counterTextView);
         wordEditText = (EditText) findViewById(R.id.wordEditText);
         guessEditText = (EditText) findViewById(R.id.guessEditText);
@@ -61,14 +63,27 @@ public class MainActivity extends Activity {
         goButton.setOnClickListener(new goButtonListener());
         validateButton = (Button) findViewById(R.id.validateButton);
         validateButton.setOnClickListener(new validateButtonListener());
+        clearButton = (Button) findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(new clearButtonListener());
         fourScoreTextView =(TextView) findViewById(R.id.fourScoreTextView);
         fiveScoreTextView =(TextView) findViewById(R.id.fiveScoreTextView);
         sixScoreTextView =(TextView) findViewById(R.id.sixScoreTextView);
-        
+        refreshScores();
+    }
+    private void refreshScores(){
+    	fourTotal = savedScore.getInt("fourTotal",0);
+        fiveTotal = savedScore.getInt("fiveTotal",0);
+        sixTotal = savedScore.getInt("sixTotal", 0);
+        fourWin = savedScore.getInt("fourWin", 0);
+        fiveWin = savedScore.getInt("fiveWin",0);
+        sixWin = savedScore.getInt("sixWin", 0);
+    	fourScoreTextView.setText(fourWin + "/" + fourTotal);
+		fiveScoreTextView.setText(fiveWin + "/" + fiveTotal);
+		sixScoreTextView.setText(sixWin + "/" + sixTotal);
     }
     
     String pickAndRandomize(){
-		int level = (int) (Math.random()*4);
+		level = (int) (Math.random()*4);
 		String randomStr;		
 		int randIndex;
 		if (level==0 || level==1)
@@ -97,12 +112,25 @@ public class MainActivity extends Activity {
 		return shuffled;
 					  	
     }
+    
+    
+    
    class goButtonListener implements OnClickListener{
 
 	@Override
 	public void onClick(View arg0) {
-		wordEditText.setText(pickAndRandomize());		
-		
+		wordEditText.setText(pickAndRandomize());	
+		SharedPreferences.Editor editor = savedScore.edit();
+		if (level == 0 || level == 1){			
+			editor.putInt("fourTotal", ++fourTotal);
+		}
+		else if(level==2){
+			editor.putInt("fiveTotal", ++fiveTotal);
+		}
+		else{
+			editor.putInt("sixTotal", ++sixTotal);
+		}
+		editor.commit();
 		
 		
 	}
@@ -112,10 +140,19 @@ public class MainActivity extends Activity {
 
 	@Override
 	public void onClick(View arg0) {
+		SharedPreferences.Editor editor = savedScore.edit();
 		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 		if (guessEditText.getText().toString().equalsIgnoreCase(choosedWord))
 		{
-										
+			if (level == 0 || level == 1){			
+				editor.putInt("fourWin", ++fourWin);
+			}
+			else if(level==2){
+				editor.putInt("fiveWin", ++fiveWin);
+			}
+			else{
+				editor.putInt("sixWin", ++sixWin);
+			}							
 			builder.setTitle(R.string.validateTitleTrue);
 			builder.setMessage(getString(R.string.validateMessageTrue));
 			
@@ -132,8 +169,26 @@ public class MainActivity extends Activity {
 		alert.show();
 		InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		inputMethodManager.hideSoftInputFromWindow(guessEditText.getWindowToken(), 0);
+		editor.commit();
 		guessEditText.setText("");
 		wordEditText.setText("");
+        refreshScores();
+
+		
+
+	}
+	   
+   }
+   class clearButtonListener implements OnClickListener
+   {
+
+	@Override
+	public void onClick(View arg0) {
+		SharedPreferences.Editor editor = savedScore.edit();
+		editor.clear();
+		editor.commit();
+		refreshScores();
+		
 	}
 	   
    }

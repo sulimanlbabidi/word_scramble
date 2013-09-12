@@ -5,7 +5,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="scoreLabel">18dp</dimen>
     <dimen name="buttonWidth">100dp</dimen>
-    <dimen name="score">20dp</dimen>
+    <dimen name="score">20sp</dimen>
     <dimen name="firstRowTopMargin">10dp</dimen>
     <dimen name="leftMargin">10dp</dimen>
     <dimen name="rightMargin">80dp</dimen>

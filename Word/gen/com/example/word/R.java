@@ -36,7 +36,8 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001a;
+        public static final int action_settings=0x7f09001c;
+        public static final int clearButton=0x7f09001b;
         public static final int counterTextView=0x7f090001;
         public static final int fiveScoreTextView=0x7f090016;
         public static final int fourScoreTextView=0x7f090013;
@@ -46,6 +47,7 @@ public final class R {
         public static final int sixScoreTextView=0x7f090019;
         public static final int tableRow0=0x7f090000;
         public static final int tableRow1=0x7f090002;
+        public static final int tableRow10=0x7f09001a;
         public static final int tableRow2=0x7f090005;
         public static final int tableRow3=0x7f090008;
         public static final int tableRow4=0x7f09000b;
@@ -73,6 +75,7 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060007;
         public static final int app_name=0x7f060000;
+        public static final int clear=0x7f060014;
         public static final int five=0x7f06000a;
         public static final int four=0x7f060009;
         public static final int go=0x7f060004;
