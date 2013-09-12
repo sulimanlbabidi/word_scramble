@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WordScramble</string>
+    <string name="scores">Your Score</string>
+    <string name="word">Word</string>
+    <string name="guess">Your Guess</string>
+    <string name="go">GO</string>
+    <string name="guessHint">Enter Your Guess Here !</string>
+    <string name="wordGuess">Press Go Then Guess!</string>
+    <string name="action_settings">Settings</string>
+    <string name="test">Validate</string>
+    <string name="four">Four</string>
+    <string name="five">Five</string>
+    <string name="six">Six  </string>
+    <string name="level">Level</string>
+    <string name="score">Score</string>
+    <string name="initialScore">Na/Na</string>
+    <string name="validateTitleTrue">True</string>
+    <string name="validateTitleFalse">False</string>
+    <string name="validateMessageTrue">Your answer is True !</string>
+    <string name="validateMessageFalse">Your answer is False !</string>
+    <string name="ok">OK</string>
+
+</resources>
