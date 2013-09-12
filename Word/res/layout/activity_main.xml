@@ -30,15 +30,16 @@
         android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_weight="1" >
+            android:layout_weight="0" >
 
             <TextView
                 android:id="@+id/wordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:gravity="right|center_vertical"
                 android:padding="4dp"
                 android:text="@string/word" />
@@ -65,10 +66,10 @@
         android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_weight="1" >
+            android:layout_weight="0" >
 
             <TextView
                 android:id="@+id/guessTextView"
@@ -157,164 +158,163 @@
         android:layout_weight="1"
         android:background="@android:color/darker_gray" >
 
-        <TableLayout
-            android:layout_width="match_parent"
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1" >
 
-            <TableRow
-                android:id="@+id/tableRow9"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/firstRowTopMargin"
-                android:layout_weight="0"
-                android:gravity="center" >
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
 
-                <LinearLayout
+                <TableRow
+                    android:id="@+id/tableRow9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0" >
+                    android:layout_marginTop="@dimen/firstRowTopMargin"
+                    android:layout_weight="0"
+                    android:gravity="center" >
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/leftMargin"
-                        android:layout_marginRight="@dimen/rightMargin"
-                        android:text="@string/level"
-                        android:textSize="@dimen/score"
-                        android:textStyle="bold" />
+                        android:layout_weight="0" >
 
-                    <TextView
-                        android:id="@+id/textView9"
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/leftMargin"
+                            android:layout_marginRight="@dimen/rightMargin"
+                            android:text="@string/level"
+                            android:textSize="@dimen/score"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/score"
+                            android:textSize="@dimen/score"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/topMargin"
+                    android:gravity="center" >
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/score"
-                        android:textSize="@dimen/score"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content" >
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="@dimen/leftMargin"
+                            android:layout_marginRight="@dimen/rightMargin"
+                            android:contentDescription="@string/scores"
+                            android:text="@string/four"
+                            android:textSize="@dimen/score" />
 
-            </TableRow>
+                        <TextView
+                            android:id="@+id/fourScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/scores"
+                            android:text="@string/initialScore"
+                            android:textSize="@dimen/score" />
+                    </LinearLayout>
+                </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/topMargin"
-                android:gravity="center" >
+                <TableRow
+                    android:id="@+id/tableRow7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:id="@+id/textView1"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="@dimen/leftMargin"
-                        android:layout_marginRight="@dimen/rightMargin"
-                        android:contentDescription="@string/scores"
-                        android:text="@string/four"
-                        android:textSize="@dimen/score" />
+                        android:layout_height="wrap_content" >
 
-                    <TextView
-                        android:id="@+id/fourScoreTextView"
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/leftMargin"
+                            android:layout_marginRight="85dp"
+                            android:layout_marginTop="@dimen/topMargin"
+                            android:contentDescription="@string/scores"
+                            android:text="@string/five"
+                            android:textSize="@dimen/score" />
+
+                        <TextView
+                            android:id="@+id/fiveScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/topMargin"
+                            android:contentDescription="@string/scores"
+                            android:text="@string/initialScore"
+                            android:textSize="@dimen/score" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/scores"
-                        android:text="@string/initialScore"
-                        android:textSize="@dimen/score" />
+                        android:layout_height="wrap_content" >
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/leftMargin"
+                            android:layout_marginRight="93dp"
+                            android:layout_marginTop="@dimen/topMargin"
+                            android:contentDescription="@string/scores"
+                            android:text="@string/six"
+                            android:textSize="@dimen/score" />
 
-            </TableRow>
+                        <TextView
+                            android:id="@+id/sixScoreTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/topMargin"
+                            android:text="@string/initialScore"
+                            android:textSize="@dimen/score" />
+                    </LinearLayout>
+                </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/leftMargin"
-                        android:layout_marginRight="85dp"
-                        android:layout_marginTop="@dimen/topMargin"
-                        android:contentDescription="@string/scores"
-                        android:text="@string/five"
-                        android:textSize="@dimen/score" />
-
-                    <TextView
-                        android:id="@+id/fiveScoreTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/topMargin"
-                        android:contentDescription="@string/scores"
-                        android:text="@string/initialScore"
-                        android:textSize="@dimen/score" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/leftMargin"
-                        android:layout_marginRight="93dp"
-                        android:layout_marginTop="@dimen/topMargin"
-                        android:contentDescription="@string/scores"
-                        android:text="@string/six"
-                        android:textSize="@dimen/score" />
-
-                    <TextView
-                        android:id="@+id/sixScoreTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/topMargin"
-                        android:text="@string/initialScore"
-                        android:textSize="@dimen/score" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="5dp" >
-
-                <Button
-                    android:id="@+id/clearButton"
+                <TableRow
+                    android:id="@+id/tableRow10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/clear" />
+                    android:gravity="center"
+                    android:paddingTop="5dp" >
 
-            </TableRow>
+                    <Button
+                        android:id="@+id/clearButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/clear" />
+                </TableRow>
+            </TableLayout>
 
-        </TableLayout>
+        </ScrollView>
+
     </TableRow>
 
 </TableLayout>
