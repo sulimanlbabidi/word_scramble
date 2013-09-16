@@ -37,8 +37,8 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f09001d;
+        public static final int averageTimeTextView=0x7f090001;
         public static final int clearButton=0x7f09001c;
-        public static final int counterTextView=0x7f090001;
         public static final int fiveScoreTextView=0x7f090017;
         public static final int fourScoreTextView=0x7f090014;
         public static final int goButton=0x7f090009;
@@ -76,6 +76,7 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060007;
         public static final int app_name=0x7f060000;
+        public static final int averageTime=0x7f060015;
         public static final int clear=0x7f060014;
         public static final int five=0x7f06000a;
         public static final int four=0x7f060009;

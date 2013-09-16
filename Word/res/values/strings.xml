@@ -22,5 +22,6 @@
     <string name="validateMessageFalse">Your answer is False !</string>
     <string name="ok">OK</string>
     <string name="clear">Clear Scores</string>
+    <string name="averageTime">Your Average Time : </string>
 
 </resources>

@@ -24,41 +24,28 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
-	private String[] fourDic = {"game","road","path","fast","tank"};
-	private String[] fiveDic = {"speed","crack","smack","world","stone"};
-	private String[] sixDic = {"battle","google","orient","ignore","editor"};
-	private int fourTotal;
-	private int fiveTotal;
-	private int sixTotal;
-	private int fourWin;
-	private int fiveWin;
-	private int sixWin;	
+	private String[] fourDic = {"game","road","path","fast","tank","tape","play","give","page"};
+	private String[] fiveDic = {"speed","crack","smack","world","stone","think","study","group"};
+	private String[] sixDic = {"battle","google","orient","ignore","editor","thread"};
+	private int fourTotal,fiveTotal,sixTotal;	
+	private int fourWin,fiveWin,sixWin;
 	private int level;
+	private float elapsedTime,averageTime;
+	private long startTimer,endTimer;
 	private String choosedWord;
 	private SharedPreferences savedScore;
-	private TextView counterTextView;
-	private EditText wordEditText;
-	private EditText guessEditText;
-	private Button clearButton;
-	private Button goButton;
-	private Button validateButton;
-	private TextView fourScoreTextView;
-	private TextView fiveScoreTextView;
-	private TextView sixScoreTextView;
+	private EditText wordEditText,guessEditText;	
+	private Button clearButton,goButton,validateButton;	
+	private TextView fourScoreTextView,fiveScoreTextView,sixScoreTextView,averageTimeTextView;
+	
 	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        savedScore = getSharedPreferences("scores",MODE_PRIVATE);
-        fourTotal = savedScore.getInt("fourTotal",0);
-        fiveTotal = savedScore.getInt("fiveTotal",0);
-        sixTotal = savedScore.getInt("sixTotal", 0);
-        fourWin = savedScore.getInt("fourWin", 0);
-        fiveWin = savedScore.getInt("fiveWin",0);
-        sixWin = savedScore.getInt("sixWin", 0);
-        counterTextView =(TextView) findViewById(R.id.counterTextView);
+        savedScore = getSharedPreferences("scores",MODE_PRIVATE);        
+        averageTimeTextView =(TextView) findViewById(R.id.averageTimeTextView);
         wordEditText = (EditText) findViewById(R.id.wordEditText);
         guessEditText = (EditText) findViewById(R.id.guessEditText);
         goButton = (Button) findViewById(R.id.goButton);
@@ -79,9 +66,11 @@ public class MainActivity extends Activity {
         fourWin = savedScore.getInt("fourWin", 0);
         fiveWin = savedScore.getInt("fiveWin",0);
         sixWin = savedScore.getInt("sixWin", 0);
+        averageTime = savedScore.getFloat("averageTime", 0);
     	fourScoreTextView.setText(fourWin + "/" + fourTotal);
 		fiveScoreTextView.setText(fiveWin + "/" + fiveTotal);
 		sixScoreTextView.setText(sixWin + "/" + sixTotal);
+		averageTimeTextView.setText(getString(R.string.averageTime) + String.format(" %.2f", averageTime));
     }
     
     String pickAndRandomize(){
@@ -95,12 +84,12 @@ public class MainActivity extends Activity {
 			choosedWord = randomStr;
 		}
 		else if (level==2){
-			randIndex = (int)(Math.random()*fourDic.length);
+			randIndex = (int)(Math.random()*fiveDic.length);
 			randomStr = fiveDic[randIndex];
 			choosedWord = randomStr;
 }
 		else{
-			randIndex = (int)(Math.random()*fourDic.length);
+			randIndex = (int)(Math.random()*sixDic.length);
 			randomStr = sixDic[randIndex];
 			choosedWord = randomStr;
 }
@@ -121,6 +110,8 @@ public class MainActivity extends Activity {
 
 	@Override
 	public void onClick(View arg0) {
+		Calendar cal = Calendar.getInstance();
+		startTimer = cal.getTimeInMillis();
 		wordEditText.setText(pickAndRandomize());	
 		SharedPreferences.Editor editor = savedScore.edit();
 		if (level == 0 || level == 1){			
@@ -146,6 +137,11 @@ public class MainActivity extends Activity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 		if (guessEditText.getText().toString().equalsIgnoreCase(choosedWord))
 		{
+			Calendar cal = Calendar.getInstance();
+			endTimer = cal.getTimeInMillis();
+			elapsedTime = (float)((endTimer - startTimer) / 1000.00);
+			/*String debug = "\n endTimer = " + endTimer + "\n startTimer = " + startTimer +
+					"\n endTimer - StartTimer = " + (endTimer-startTimer);*/
 			if (level == 0 || level == 1){			
 				editor.putInt("fourWin", ++fourWin);
 			}
@@ -156,8 +152,13 @@ public class MainActivity extends Activity {
 				editor.putInt("sixWin", ++sixWin);
 			}							
 			builder.setTitle(R.string.validateTitleTrue);
-			builder.setMessage(getString(R.string.validateMessageTrue));
-			
+			builder.setMessage(getString(R.string.validateMessageTrue) +
+					"\n ElaspedTime = " + elapsedTime /*+ debug*/);
+			if (averageTime == 0)
+				averageTime = elapsedTime;
+			else
+				averageTime = (float) ((averageTime + elapsedTime) /2.0);
+			editor.putFloat("averageTime", averageTime);
 		}
 		else
 		{
